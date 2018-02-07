@@ -1,3 +1,4 @@
+//本地评测命令 g++ grader.cpp gap.cpp -o gap.exe -O2 -lm
 #include"gap.h"
 #include<iostream>
 using namespace std;
