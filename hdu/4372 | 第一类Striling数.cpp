@@ -1,3 +1,7 @@
+/*
+	第一类stirling数S（n，m）表示的是n个数排成m个非空环排列的数目
+	每个环排列中必然有一个是可以看见的，然后再对这m个环求组合数
+*/
 #include<iostream>
 #include<cstdio>
 #include<cstring>
