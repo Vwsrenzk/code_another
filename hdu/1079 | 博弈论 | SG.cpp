@@ -57,8 +57,8 @@ int main(){
 	int y,m,d;
 	memset(SG,-1,sizeof(SG));
 	for(int i=1900;i<=2001;i++){
-		if((i%4==0&&i%100!=0)||(i%400==0))day[i-1900+1]=29;
-		else day[i-1900+1]=28;
+		if((i%4==0&&i%100!=0)||(i%400==0))day[i-1900]=29;
+		else day[i-1900]=28;
 	}
 	SG[101][11][4]=0;
 	for(int i=5;i<=30;i++)SG[101][11][i]=1;
