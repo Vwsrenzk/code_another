@@ -4,7 +4,7 @@
 #include<queue>
 #define maxn 160
 using namespace std;
-int val[maxn*maxn],tr[maxn*maxn][27],sz,fail[maxn*maxn],last[maxn*maxn],cnt[maxn];
+int val[maxn*maxn],tr[maxn*maxn][27],sz,fail[maxn*maxn],cnt[maxn];
 char s[1000010],ch[maxn][100];
 void Insert(int id){
 	int n=strlen(ch[id]+1),now=0;
@@ -21,7 +21,6 @@ void getfail(){
 		if(tr[0][i]){
 			q.push(tr[0][i]);
 			fail[tr[0][i]]=0;
-			last[tr[0][i]]=0;
 		}
 	while(!q.empty()){
 		int now=q.front();q.pop();
@@ -32,14 +31,7 @@ void getfail(){
 			int to=fail[now];
 			while(to&&!tr[to][i])to=fail[to];
 			fail[cur]=tr[to][i];
-			last[cur]=val[fail[cur]]?fail[cur]:last[fail[cur]];
 		}
-	}
-}
-void count(int x){
-	if(x){
-		cnt[val[x]]++;
-		count(last[x]);
 	}
 }
 void find(){
@@ -48,8 +40,7 @@ void find(){
 		int tmp=s[i]-'a'+1;
 		while(j&&!tr[j][tmp])j=fail[j];
 		j=tr[j][tmp];
-		if(val[j])count(j);
-		else if(last[j])count(last[j]);
+		if(val[j])cnt[val[j]]++;
 	}
 }
 int main(){
@@ -60,7 +51,6 @@ int main(){
 		memset(fail,0,sizeof(fail));
 		memset(val,0,sizeof(val));
 		memset(cnt,0,sizeof(cnt));
-		memset(last,0,sizeof(last));
 		scanf("%d",&n);
 		if(n==0)return 0;
 		for(int i=1;i<=n;i++){
